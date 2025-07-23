@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  password_hash String   @map("password_hash")
+  role         String    @default("admin")
+  created_at   DateTime  @default(now()) @map("created_at")
+  updated_at   DateTime  @default(now()) @map("updated_at")
+  blog_posts   BlogPost[]
+  @@map("users")
+}
+
+model BlogPost {
+  id           Int       @id @default(autoincrement())
+  title        String
+  slug         String    @unique
+  content      String
+  excerpt      String?
+  author_id    Int?      @map("author_id")
+  author       User?     @relation(fields: [author_id], references: [id])
+  published    Boolean   @default(false)
+  published_at DateTime? @map("published_at")
+  created_at   DateTime  @default(now()) @map("created_at")
+  updated_at   DateTime  @default(now()) @map("updated_at")
+  @@map("blog_posts")
+}
+
+model CaseStudy {
+  id           Int       @id @default(autoincrement())
+  title        String
+  slug         String    @unique
+  description  String
+  client_name  String?   @map("client_name")
+  industry     String?
+  technologies String[]
+  results      String?
+  published    Boolean   @default(false)
+  created_at   DateTime  @default(now()) @map("created_at")
+  updated_at   DateTime  @default(now()) @map("updated_at")
+  @@map("case_studies")
+}
+
+model ContactSubmission {
+  id                Int      @id @default(autoincrement())
+  name              String
+  email             String
+  company           String?
+  message           String
+  service_interest  String?  @map("service_interest")
+  status            String   @default("new")
+  created_at        DateTime @default(now()) @map("created_at")
+  @@map("contact_submissions")
+}

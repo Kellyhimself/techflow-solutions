@@ -1,0 +1,28 @@
+# Development Dockerfile for TechFlow Solutions Frontend
+FROM node:20-bullseye
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+RUN apt-get update && apt-get install -y gosu
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+USER root
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["npm", "run", "dev"] 

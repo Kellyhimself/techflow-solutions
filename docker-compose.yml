@@ -1,0 +1,76 @@
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15
+    container_name: techflow_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: techflow_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infrastructure/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - techflow_network
+
+  # Redis (for caching)
+  redis:
+    image: redis:7-alpine
+    container_name: techflow_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - techflow_network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: techflow_backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://postgres:password@db:5432/techflow_dev
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db
+      - redis
+    networks:
+      - techflow_network
+
+  # Frontend (Next.js)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: techflow_frontend
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: http://backend:3001
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - nextjs_build:/app/.next
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - techflow_network
+
+volumes:
+  postgres_data:
+  nextjs_build:
+
+networks:
+  techflow_network:
+    driver: bridge
