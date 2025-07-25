@@ -1,28 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import localFont from "next/font/local";
 import Link from "next/link";
 import AuthDropdown from "@/components/AuthDropdown";
 import Navigation from "@/components/Navigation";
 import MobileNavigation from "@/components/MobileNavigation";
-
-const geistSans = localFont({
-  src: [
-    { path: "/fonts/Geist/webfonts/Geist-Regular.woff2", weight: "400", style: "normal" },
-    { path: "/fonts/Geist/webfonts/Geist-Bold.woff2", weight: "700", style: "normal" },
-  ],
-  variable: "--font-geist-sans",
-  display: "swap",
-});
-
-const geistMono = localFont({
-  src: [
-    { path: "/fonts/GeistMono/webfonts/GeistMono-Regular.woff2", weight: "400", style: "normal" },
-    { path: "/fonts/GeistMono/webfonts/GeistMono-Bold.woff2", weight: "700", style: "normal" },
-  ],
-  variable: "--font-geist-mono",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "TechFlow Solutions",
@@ -35,8 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-[var(--background)] text-[var(--foreground)]`}>
+    <html lang="en">
+      <head>
+        <link rel="stylesheet" href="https://geists.vercel.app/font.css" />
+      </head>
+      <body className="antialiased min-h-screen bg-[var(--background)] text-[var(--foreground)]">
         
           {/* Header with navigation */}
           <header className="sticky top-0 z-50 w-full bg-[#0a2540] shadow-lg border-b border-[#1a1446]">

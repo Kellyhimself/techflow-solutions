@@ -95,10 +95,14 @@
 }
 
 body {
-  font-family: var(--font-sans), sans-serif;
+  font-family: 'Geist', 'Geist Mono', sans-serif;
   background-image: var(--gradient);
   background-attachment: fixed;
   background-size: cover;
+}
+
+code, pre {
+  font-family: 'Geist Mono', 'Geist', monospace;
 }
 
 .button, button, .btn {
