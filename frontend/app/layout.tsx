@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import Link from "next/link";
-import AuthDropdown from "../components/AuthDropdown";
-import Navigation from "../components/Navigation";
-import MobileNavigation from "../components/MobileNavigation";
+import AuthDropdown from "@/components/AuthDropdown";
+import Navigation from "@/components/Navigation";
+import MobileNavigation from "@/components/MobileNavigation";
 
 const geistSans = localFont({
   src: [
