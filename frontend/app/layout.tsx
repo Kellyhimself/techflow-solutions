@@ -8,8 +8,8 @@ import MobileNavigation from "../components/MobileNavigation";
 
 const geistSans = localFont({
   src: [
-    { path: "../fonts/Geist/webfonts/Geist-Regular.woff2", weight: "400", style: "normal" },
-    { path: "../fonts/Geist/webfonts/Geist-Bold.woff2", weight: "700", style: "normal" },
+    { path: "/fonts/Geist/webfonts/Geist-Regular.woff2", weight: "400", style: "normal" },
+    { path: "/fonts/Geist/webfonts/Geist-Bold.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-geist-sans",
   display: "swap",
@@ -17,8 +17,8 @@ const geistSans = localFont({
 
 const geistMono = localFont({
   src: [
-    { path: "../fonts/GeistMono/webfonts/GeistMono-Regular.woff2", weight: "400", style: "normal" },
-    { path: "../fonts/GeistMono/webfonts/GeistMono-Bold.woff2", weight: "700", style: "normal" },
+    { path: "/fonts/GeistMono/webfonts/GeistMono-Regular.woff2", weight: "400", style: "normal" },
+    { path: "/fonts/GeistMono/webfonts/GeistMono-Bold.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-geist-mono",
   display: "swap",

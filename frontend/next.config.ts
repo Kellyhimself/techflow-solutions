@@ -1,4 +1,5 @@
-/* import type { NextConfig } from "next";
+import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   async rewrites() {
@@ -9,7 +10,13 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  webpack: (config) => {
+    config.resolve = config.resolve || {};
+    config.resolve.alias = config.resolve.alias || {};
+    // Removed @fonts alias
+    return config;
+  },
   // ...other config options
 };
 
-export default nextConfig; */
+export default nextConfig;
