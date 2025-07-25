@@ -4,14 +4,14 @@ FROM node:20-bullseye
 # Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Copy package files from frontend/
+COPY frontend/package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy source code
-COPY . .
+# Copy source code from frontend/
+COPY frontend/. .
 
 # Expose port
 EXPOSE 3000
