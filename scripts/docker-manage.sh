@@ -40,8 +40,8 @@ show_usage() {
     echo "Usage: $0 [COMMAND] [OPTIONS]"
     echo ""
     echo "Commands:"
-    echo "  start       Start all services (docker-compose up -d)"
-    echo "  stop        Stop all services (docker-compose down)"
+    echo "  start       Start all services (docker compose up -d)"
+    echo "  stop        Stop all services (docker compose down)"
     echo "  restart     Restart all services"
     echo "  reset       Full reset: stop, clean, prune, and start all services"
     echo "  status      Show status of all containers"
@@ -84,8 +84,13 @@ check_docker() {
 
 # Function to check if Docker Compose is available
 check_docker_compose() {
-    if ! command -v docker-compose &> /dev/null; then
-        print_error "Docker Compose is not installed"
+    if ! command -v docker &> /dev/null; then
+        print_error "Docker is not installed"
+        exit 1
+    fi
+    
+    if ! docker compose version &> /dev/null; then
+        print_error "Docker Compose is not available"
         exit 1
     fi
 }

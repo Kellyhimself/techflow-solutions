@@ -17,7 +17,8 @@ const menuItems: MenuItem[] = [
       { label: 'DevSecOps Platform', href: '/products/platform' },
       { label: 'Container Security', href: '/products/containers' },
       { label: 'Infrastructure as Code', href: '/products/iac' },
-      { label: 'Open Source Security', href: '/products/oss' }
+      { label: 'Open Source Security', href: '/products/oss' },
+      { label: 'Our Apps', href: '/products/apps' }
     ]
   },
   {

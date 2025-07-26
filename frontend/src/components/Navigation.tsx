@@ -33,6 +33,11 @@ const menuItems: MenuItem[] = [
         label: 'Open Source Security',
         href: '/products/oss',
         description: 'Find and fix vulnerabilities in your dependencies'
+      },
+      {
+        label: 'Our Apps',
+        href: '/products/apps',
+        description: 'Explore the fullstack applications we have built'
       }
     ]
   },

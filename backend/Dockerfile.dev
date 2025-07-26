@@ -16,8 +16,14 @@ COPY backend/. .
 # Generate Prisma client
 RUN npx prisma generate
 
+# Run database migrations (for production)
+RUN npx prisma migrate deploy
+
 # Expose port
 EXPOSE 3001
+
+# Start development server
+CMD ["npm", "run", "dev"] 
 
 # Start development server
 CMD ["npm", "run", "dev"] 

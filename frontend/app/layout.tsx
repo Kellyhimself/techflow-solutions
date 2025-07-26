@@ -4,6 +4,7 @@ import Link from "next/link";
 import AuthDropdown from "@/components/AuthDropdown";
 import Navigation from "@/components/Navigation";
 import MobileNavigation from "@/components/MobileNavigation";
+import AnimatedBanner from "@/components/AnimatedBanner";
 
 export const metadata: Metadata = {
   title: "TechFlow Solutions",
@@ -27,8 +28,8 @@ export default function RootLayout({
             <nav className="max-w-7xl mx-auto flex items-center justify-between px-3 py-2">
               {/* Logo */}
               <Link href="/" className="flex items-center gap-3 font-bold text-xl text-white">
-                <span className="bg-white rounded-full w-8 h-8 flex items-center justify-center text-[#0a2540] font-mono text-lg shadow-md">TF</span>
-                <span className="hidden sm:inline text-white tracking-tight">TFlow</span>
+                <span className="bg-white rounded-full w-8 h-8 flex items-center justify-center text-[#0a2540] font-mono text-lg shadow-md">V..</span>
+                <span className="hidden sm:inline text-white tracking-tight">Veylor360</span>
               </Link>
               
               {/* Left navigation */}
@@ -47,6 +48,9 @@ export default function RootLayout({
               </div>
             </nav>
           </header>
+          
+          {/* Animated Banner */}
+          <AnimatedBanner />
           
           {/* Main content */}
           <main className="max-w-7xl mx-auto px-4 py-12">
